@@ -1,0 +1,37 @@
+﻿using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Windows.Forms;
+
+namespace Lab2
+{
+    class ShapeEditor
+    {
+        protected int x1, y1, x2, y2;
+        protected Pen pen;
+        protected SolidBrush brush;
+
+        public void OnMouseDown(MouseEventArgs e)
+        {
+            this.x1 = e.X;
+            this.y1 = e.Y;
+        }
+
+        public virtual void OnMouseUp(MouseEventArgs e, Graphics g)
+        {
+            return;
+        }
+
+        public void InitPen(Color penColor, Color brushColor, DashStyle style)
+        {
+            this.pen = new Pen(penColor);
+            this.pen.DashStyle = style;
+            this.brush = new SolidBrush(brushColor);
+        }
+
+        public void DisposePen()
+        {
+            this.pen.Dispose();
+            this.brush.Dispose();
+        }
+    }
+}
