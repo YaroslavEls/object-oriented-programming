@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace Lab2
 {
-    class ShapeEditor
+    abstract class ShapeEditor
     {
         protected int x1, y1, x2, y2;
         protected Pen pen;
@@ -19,6 +19,11 @@ namespace Lab2
         public virtual void OnMouseUp(MouseEventArgs e, Graphics g)
         {
             return;
+        }
+
+        public virtual void OnMouseMove(MouseEventArgs e, Graphics g)
+        {
+            this.OnMouseUp(e, g);
         }
 
         public void InitPen(Color penColor, Color brushColor, DashStyle style)

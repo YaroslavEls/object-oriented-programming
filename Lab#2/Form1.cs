@@ -8,7 +8,6 @@ namespace Lab2
     public partial class Form1 : Form
     {
         ShapeObjectsEditor shapeObjectsEditor = new ShapeObjectsEditor();
-
         Graphics g, g2;
         Bitmap pic, pic2;
 
@@ -43,6 +42,14 @@ namespace Lab2
             shapeObjectsEditor.EllipseEditor();
         }
 
+        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image = null;
+            pictureBox1.BackgroundImage = null;
+            pic = new Bitmap(Width, Height);
+            g = Graphics.FromImage(pic);
+        }
+
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             shapeObjectsEditor.InitPen(Color.Black, Color.Orange, DashStyle.Dash);
@@ -65,7 +72,7 @@ namespace Lab2
                 pic2.MakeTransparent();
                 g2 = Graphics.FromImage(pic2);
                 pictureBox1.BackgroundImage = pic2;
-                shapeObjectsEditor.OnMouseUp(e, g2);
+                shapeObjectsEditor.OnMouseMove(e, g2);
             }
         }
     }

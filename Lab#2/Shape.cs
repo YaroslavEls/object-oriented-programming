@@ -1,6 +1,6 @@
 ﻿namespace Lab2
 {
-    class Shape
+    abstract class Shape
     {
         protected int x1, y1, x2, y2;
 

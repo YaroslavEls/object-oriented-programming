@@ -45,6 +45,14 @@ namespace Lab2
             }
         }
 
+        public void OnMouseMove(MouseEventArgs e, Graphics g)
+        {
+            if (this.shapeEditor != null)
+            {
+                this.shapeEditor.OnMouseMove(e, g);
+            }
+        }
+
         public void InitPen(Color penColor, Color brushColor, DashStyle style)
         {
             this.shapeEditor.InitPen(penColor, brushColor, style);
