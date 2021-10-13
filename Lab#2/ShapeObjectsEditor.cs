@@ -55,12 +55,18 @@ namespace Lab2
 
         public void InitPen(Color penColor, Color brushColor, DashStyle style)
         {
-            this.shapeEditor.InitPen(penColor, brushColor, style);
+            if (this.shapeEditor != null)
+            {
+                this.shapeEditor.InitPen(penColor, brushColor, style);
+            }
         }
 
         public void DisposePen()
         {
-            this.shapeEditor.DisposePen();
+            if (this.shapeEditor != null)
+            {
+                this.shapeEditor.DisposePen();
+            }
         }
     }
 }

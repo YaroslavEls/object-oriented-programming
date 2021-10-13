@@ -5,7 +5,7 @@ namespace Lab2.objects
 {
     class Ellipse : Shape
     {
-        public void Show(Graphics g, Pen pen)
+        public override void Show(Graphics g, Pen pen)
         {
             g.DrawEllipse(pen,
                           (this.x1 > this.x2 ? this.x2 : this.x1),

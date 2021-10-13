@@ -4,7 +4,7 @@ namespace Lab2.objects
 {
     class Line : Shape
     {
-        public void Show(Graphics g, Pen pen)
+        public override void Show(Graphics g, Pen pen)
         {
             g.DrawLine(pen, this.x1, this.y1, this.x2, this.y2);
         }

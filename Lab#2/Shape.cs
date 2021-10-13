@@ -1,4 +1,6 @@
-﻿namespace Lab2
+﻿using System.Drawing;
+
+namespace Lab2
 {
     abstract class Shape
     {
@@ -11,5 +13,7 @@
             this.x2 = _x2;
             this.y2 = _y2;
         }
+
+        public abstract void Show(Graphics g, Pen pen);
     }
 }

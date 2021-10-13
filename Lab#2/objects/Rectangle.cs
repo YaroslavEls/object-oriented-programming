@@ -5,7 +5,7 @@ namespace Lab2.objects
 {
     class Rectangle : Shape
     {
-        public void Show(Graphics g, Pen pen)
+        public override void Show(Graphics g, Pen pen)
         {
             g.DrawRectangle(pen, 
                             (this.x1 < this.x2 ? (this.x1 - this.x2 + this.x1) : this.x2),

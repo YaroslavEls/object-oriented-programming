@@ -16,10 +16,7 @@ namespace Lab2
             this.y1 = e.Y;
         }
 
-        public virtual void OnMouseUp(MouseEventArgs e, Graphics g)
-        {
-            return;
-        }
+        public abstract void OnMouseUp(MouseEventArgs e, Graphics g);
 
         public virtual void OnMouseMove(MouseEventArgs e, Graphics g)
         {
