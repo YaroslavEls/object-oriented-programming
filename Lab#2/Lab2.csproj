@@ -65,6 +65,7 @@
     <Compile Include="Shape.cs" />
     <Compile Include="ShapeEditor.cs" />
     <Compile Include="ShapeObjectsEditor.cs" />
+    <Compile Include="ToolStrip.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
