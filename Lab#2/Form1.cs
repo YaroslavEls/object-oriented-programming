@@ -19,32 +19,28 @@ namespace Lab2
             g = Graphics.FromImage(pic);
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void dotToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            toolStrip.Dot(shapeObjectsEditor);
+            Text = "Drawing Dots";
+            shapeObjectsEditor.DotEditor();
         }
 
-        private void toolStripButton2_Click(object sender, EventArgs e)
+        private void lineToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            toolStrip.Line(shapeObjectsEditor);
+            Text = "Drawing Lines";
+            shapeObjectsEditor.LineEditor();
         }
 
-        private void toolStripButton3_Click(object sender, EventArgs e)
+        private void rectangleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            toolStrip.Rectangle(shapeObjectsEditor);
+            Text = "Drawing Rectangles";
+            shapeObjectsEditor.RectangleEditor();
         }
 
-        private void toolStripButton4_Click(object sender, EventArgs e)
+        private void ellipseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            toolStrip.Ellipse(shapeObjectsEditor);
-        }
-
-        private void toolStripLabel1_Click(object sender, EventArgs e)
-        {
-            pictureBox1.Image = null;
-            pictureBox1.BackgroundImage = null;
-            pic = new Bitmap(Width, Height);
-            g = Graphics.FromImage(pic);
+            Text = "Drawing Ellipses";
+            shapeObjectsEditor.EllipseEditor();
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -72,6 +68,35 @@ namespace Lab2
                 pictureBox1.BackgroundImage = pic2;
                 shapeObjectsEditor.OnMouseMove(e, g2);
             }
+        }
+
+
+        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            /*pictureBox1.Image = null;
+            pictureBox1.BackgroundImage = null;
+            pic = new Bitmap(Width, Height);
+            g = Graphics.FromImage(pic);*/
+            toolStrip.Create(pictureBox1);
+            pic = new Bitmap(Width, Height);
+            g = Graphics.FromImage(pic);
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            /*pictureBox1.Image = Image.FromFile(@"D:\asd.bmp");
+            pic = new Bitmap(pictureBox1.Image);
+            g = Graphics.FromImage(pic);*/
+            toolStrip.Open(pictureBox1);
+            pic = new Bitmap(pictureBox1.Image);
+            g = Graphics.FromImage(pic);
+
+        }
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+            /*pic.Save(@"D:\aaa.bmp");*/
+            toolStrip.Save(pic);
         }
     }
 }
