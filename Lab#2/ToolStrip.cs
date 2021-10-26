@@ -1,26 +1,37 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Lab2
 {
     class ToolStrip
     {
-        protected string directory = @"D:\aaa.bmp";
+        public Form currentForm;
 
-        public void Save(Bitmap bit)
+        public void Dot(ShapeObjectsEditor shapeObjectsEditor)
         {
-            bit.Save(directory);
+            currentForm = Form.ActiveForm;
+            this.currentForm.Text = "Drawing Dots";
+            shapeObjectsEditor.DotEditor();
         }
 
-        public void Open(PictureBox picBox)
+        public void Line(ShapeObjectsEditor shapeObjectsEditor)
         {
-            picBox.Image = Image.FromFile(directory);
+            currentForm = Form.ActiveForm; 
+            currentForm.Text = "Drawing Lines";
+            shapeObjectsEditor.LineEditor();
         }
 
-        public void Create(PictureBox picBox)
+        public void Rectangle(ShapeObjectsEditor shapeObjectsEditor)
         {
-            picBox.Image = null;
-            picBox.BackgroundImage = null;
+            currentForm = Form.ActiveForm; 
+            currentForm.Text = "Drawing Rectangles";
+            shapeObjectsEditor.RectangleEditor();
+        }
+
+        public void Ellipse(ShapeObjectsEditor shapeObjectsEditor)
+        {
+            currentForm = Form.ActiveForm; 
+            currentForm.Text = "Drawing Ellipses";
+            shapeObjectsEditor.EllipseEditor();
         }
     }
 }
