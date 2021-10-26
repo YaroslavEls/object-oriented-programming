@@ -8,7 +8,6 @@ namespace Lab2
     public partial class Form1 : Form
     {
         ShapeObjectsEditor shapeObjectsEditor = new ShapeObjectsEditor();
-        ToolStrip toolStrip = new ToolStrip();
         Graphics g, g2;
         Bitmap pic, pic2;
 
@@ -43,6 +42,14 @@ namespace Lab2
             shapeObjectsEditor.EllipseEditor();
         }
 
+        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image = null;
+            pictureBox1.BackgroundImage = null;
+            pic = new Bitmap(Width, Height);
+            g = Graphics.FromImage(pic);
+        }
+
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             shapeObjectsEditor.InitPen(Color.Black, Color.Orange, DashStyle.Dash);
@@ -55,7 +62,6 @@ namespace Lab2
             shapeObjectsEditor.OnMouseUp(e, g);
             pictureBox1.Image = pic;
             shapeObjectsEditor.DisposePen();
-            pictureBox1.BackgroundImage = null;
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -68,35 +74,6 @@ namespace Lab2
                 pictureBox1.BackgroundImage = pic2;
                 shapeObjectsEditor.OnMouseMove(e, g2);
             }
-        }
-
-
-        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            /*pictureBox1.Image = null;
-            pictureBox1.BackgroundImage = null;
-            pic = new Bitmap(Width, Height);
-            g = Graphics.FromImage(pic);*/
-            toolStrip.Create(pictureBox1);
-            pic = new Bitmap(Width, Height);
-            g = Graphics.FromImage(pic);
-        }
-
-        private void toolStripButton6_Click(object sender, EventArgs e)
-        {
-            /*pictureBox1.Image = Image.FromFile(@"D:\asd.bmp");
-            pic = new Bitmap(pictureBox1.Image);
-            g = Graphics.FromImage(pic);*/
-            toolStrip.Open(pictureBox1);
-            pic = new Bitmap(pictureBox1.Image);
-            g = Graphics.FromImage(pic);
-
-        }
-
-        private void Save_Click(object sender, EventArgs e)
-        {
-            /*pic.Save(@"D:\aaa.bmp");*/
-            toolStrip.Save(pic);
         }
     }
 }
