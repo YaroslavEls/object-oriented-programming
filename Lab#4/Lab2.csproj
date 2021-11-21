@@ -52,9 +52,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="interfaces\RectangleInterface.cs" />
-    <Compile Include="interfaces\ShapeInterface.cs" />
-    <Compile Include="interfaces\LineInterface.cs" />
+    <Compile Include="MultyShape.cs" />
     <Compile Include="objects\Cube.cs" />
     <Compile Include="objects\CubeEditor.cs" />
     <Compile Include="objects\Dot.cs" />
@@ -65,11 +63,13 @@
     <Compile Include="objects\LineEditor.cs" />
     <Compile Include="objects\Rectangle.cs" />
     <Compile Include="objects\RectangleEditor.cs" />
+    <Compile Include="objects\Rod.cs" />
+    <Compile Include="objects\RodEditor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shape.cs" />
     <Compile Include="ShapeEditor.cs" />
-    <Compile Include="ShapeObjectsEditor.cs" />
+    <Compile Include="MyEditor.cs" />
     <Compile Include="ToolStrip.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

@@ -44,6 +44,18 @@ namespace Lab2
             MyEditor.Start(new EllipseEditor());
         }
 
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            toolStrip.Button("Drawing Cubes");
+            MyEditor.Start(new CubeEditor());
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            toolStrip.Button("Drawing Rods");
+            MyEditor.Start(new RodEditor());
+        }
+
         private void toolStripLabel1_Click(object sender, EventArgs e)
         {
             pictureBox1.Image = null;
@@ -56,12 +68,6 @@ namespace Lab2
         {
             MyEditor.InitPen(Color.Black, Color.Orange, DashStyle.Dash);
             MyEditor.OnMouseDown(e);
-        }
-
-        private void toolStripButton5_Click(object sender, EventArgs e)
-        {
-            toolStrip.Button("Testing");
-            MyEditor.Start(new CubeEditor());
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)

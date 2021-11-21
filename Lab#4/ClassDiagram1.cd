@@ -8,17 +8,10 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Lab2.ShapeEditor">
-    <Position X="8" Y="0.5" Width="1.5" />
+    <Position X="11.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAgAAAAAAAAgAAAAAAxCAAACAIQAAAAACAAA=</HashCode>
       <FileName>ShapeEditor.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Lab2.ShapeObjectsEditor">
-    <Position X="5" Y="0.5" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>CAAAAAIAAAAAMAAAAAAAAAAAABCACAAAIAAAAAACAAE=</HashCode>
-      <FileName>ShapeObjectsEditor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Lab2.objects.Dot">
@@ -29,7 +22,15 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Lab2.objects.DotEditor">
-    <Position X="9.25" Y="6" Width="1.5" />
+    <Position X="12.5" Y="5.75" Width="1.5" />
+    <InheritanceLine Type="Lab2.ShapeEditor" ManuallyRouted="true">
+      <Path>
+        <Point X="12" Y="3.786" />
+        <Point X="12" Y="5.566" />
+        <Point X="13.25" Y="5.566" />
+        <Point X="13.25" Y="5.75" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
       <FileName>objects\DotEditor.cs</FileName>
@@ -43,7 +44,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Lab2.objects.EllipseEditor">
-    <Position X="9.25" Y="4" Width="1.5" />
+    <Position X="12.5" Y="4" Width="1.5" />
+    <InheritanceLine Type="Lab2.ShapeEditor" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="12" Y="3.786" />
+        <Point X="12" Y="4.625" />
+        <Point X="12.5" Y="4.625" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAACAAA=</HashCode>
       <FileName>objects\EllipseEditor.cs</FileName>
@@ -57,7 +65,15 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Lab2.objects.LineEditor">
-    <Position X="6.75" Y="6" Width="1.5" />
+    <Position X="10" Y="5.75" Width="1.5" />
+    <InheritanceLine Type="Lab2.ShapeEditor" ManuallyRouted="true">
+      <Path>
+        <Point X="12" Y="3.786" />
+        <Point X="12" Y="5.566" />
+        <Point X="10.75" Y="5.566" />
+        <Point X="10.75" Y="5.75" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
       <FileName>objects\LineEditor.cs</FileName>
@@ -71,17 +87,76 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Lab2.objects.RectangleEditor">
-    <Position X="6.75" Y="4" Width="1.5" />
+    <Position X="10" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
       <FileName>objects\RectangleEditor.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Lab2.ToolStrip">
-    <Position X="10.5" Y="0.75" Width="1.5" />
+    <Position X="5.75" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACAAAAAQAAAAAAAAAACAAgAAAAAAAAAAABAAA=</HashCode>
+      <HashCode>AEAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ToolStrip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab2.objects.Cube">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>objects\Cube.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab2.objects.CubeEditor">
+    <Position X="10" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>objects\CubeEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab2.objects.RodEditor">
+    <Position X="12.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>objects\RodEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab2.MultyShape">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMAAAAAAAAAAAAAAACAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MultyShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab2.objects.Rod">
+    <Position X="7" Y="3.5" Width="1.5" />
+    <InheritanceLine Type="Lab2.MultyShape" ManuallyRouted="true">
+      <Path>
+        <Point X="6" Y="2.569" />
+        <Point X="6" Y="3.125" />
+        <Point X="7.096" Y="3.125" />
+        <Point X="7.096" Y="5.058" />
+        <Point X="7.75" Y="5.058" />
+        <Point X="7.75" Y="3.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAECAAAAAAAAAAAAAA=</HashCode>
+      <FileName>objects\Rod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab2.MyEditor">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAACAAEAAAAAAAAAAAABCAAAAAIAAAAAACAAA=</HashCode>
+      <FileName>MyEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab2.Program">
+    <Position X="7.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
