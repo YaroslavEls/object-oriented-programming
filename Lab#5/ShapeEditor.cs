@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace Lab2
 {
-    abstract class ShapeEditor
+    public abstract class ShapeEditor
     {
         public int x1, y1, x2, y2;
         protected Pen pen;

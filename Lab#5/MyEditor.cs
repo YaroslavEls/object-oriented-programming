@@ -4,8 +4,26 @@ using System.Windows.Forms;
 
 namespace Lab2
 {
-    class MyEditor
+    public sealed class MyEditor
     {
+        private static readonly MyEditor instance = new MyEditor();
+
+        static MyEditor()
+        {
+        }
+
+        private MyEditor()
+        {
+        }
+
+        public static MyEditor Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
         ShapeEditor shapeEditor;
 
         public void Start(ShapeEditor shapeEditorInstance)

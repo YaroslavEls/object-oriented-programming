@@ -9,7 +9,6 @@ namespace Lab2
 {
     public partial class Form1 : Form
     {
-        MyEditor MyEditor = new MyEditor();
         ToolStrip toolStrip = new ToolStrip();
         MyTable TableForm = new MyTable();
         Graphics g, g2;
@@ -25,37 +24,37 @@ namespace Lab2
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             toolStrip.Button("Drawing Dot");
-            MyEditor.Start(new DotEditor());
+            MyEditor.Instance.Start(new DotEditor());
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             toolStrip.Button("Drawing Line");
-            MyEditor.Start(new LineEditor());
+            MyEditor.Instance.Start(new LineEditor());
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             toolStrip.Button("Drawing Rectangle");
-            MyEditor.Start(new RectangleEditor());
+            MyEditor.Instance.Start(new RectangleEditor());
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
             toolStrip.Button("Drawing Ellipse");
-            MyEditor.Start(new EllipseEditor());
+            MyEditor.Instance.Start(new EllipseEditor());
         }
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
             toolStrip.Button("Drawing Cube");
-            MyEditor.Start(new CubeEditor());
+            MyEditor.Instance.Start(new CubeEditor());
         }
 
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
             toolStrip.Button("Drawing Rod");
-            MyEditor.Start(new RodEditor());
+            MyEditor.Instance.Start(new RodEditor());
         }
 
         private void toolStripLabel1_Click(object sender, EventArgs e)
@@ -85,19 +84,19 @@ namespace Lab2
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            MyEditor.InitPen(Color.Black, Color.Orange, DashStyle.Dash);
-            MyEditor.OnMouseDown(e);
+            MyEditor.Instance.InitPen(Color.Black, Color.Orange, DashStyle.Dash);
+            MyEditor.Instance.OnMouseDown(e);
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            MyEditor.InitPen(Color.Black, Color.Orange, DashStyle.Solid);
-            MyEditor.OnMouseUp(e, g);
+            MyEditor.Instance.InitPen(Color.Black, Color.Orange, DashStyle.Solid);
+            MyEditor.Instance.OnMouseUp(e, g);
             pictureBox1.Image = pic;
-            MyEditor.DisposePen();
+            MyEditor.Instance.DisposePen();
             pictureBox1.BackgroundImage = null;
 
-            TableForm.AddData(this.Text.Remove(0, 8), MyEditor.GetCoords());
+            TableForm.AddData(this.Text.Remove(0, 8), MyEditor.Instance.GetCoords());
             TableForm.ShowData();
         }
 
@@ -109,7 +108,7 @@ namespace Lab2
                 pic2.MakeTransparent();
                 g2 = Graphics.FromImage(pic2);
                 pictureBox1.BackgroundImage = pic2;
-                MyEditor.OnMouseMove(e, g2);
+                MyEditor.Instance.OnMouseMove(e, g2);
             }
         }
     }
