@@ -1,7 +1,7 @@
 ﻿
 namespace RGR
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -31,12 +31,14 @@ namespace RGR
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tablesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.testingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -47,6 +49,8 @@ namespace RGR
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tablesToolStripMenuItem,
+            this.addToolStripMenuItem,
+            this.exportToolStripMenuItem,
             this.testingToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -57,17 +61,44 @@ namespace RGR
             // tablesToolStripMenuItem
             // 
             this.tablesToolStripMenuItem.Name = "tablesToolStripMenuItem";
-            this.tablesToolStripMenuItem.Size = new System.Drawing.Size(64, 26);
+            this.tablesToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
             this.tablesToolStripMenuItem.Text = "Tables";
             this.tablesToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tablesToolStripMenuItem_DropDownItemClicked);
             // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Enabled = false;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
+            this.addToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // exportToolStripMenuItem
+            // 
+            this.exportToolStripMenuItem.Enabled = false;
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
+            this.exportToolStripMenuItem.Text = "Export";
+            // 
+            // testingToolStripMenuItem
+            // 
+            this.testingToolStripMenuItem.Name = "testingToolStripMenuItem";
+            this.testingToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
+            this.testingToolStripMenuItem.Text = "testing";
+            this.testingToolStripMenuItem.Click += new System.EventHandler(this.testingToolStripMenuItem_Click);
+            // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 28);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -93,25 +124,18 @@ namespace RGR
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(96, 20);
             this.toolStripStatusLabel1.Text = "database: rgr";
             // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 20);
-            // 
             // toolStripStatusLabel3
             // 
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
             this.toolStripStatusLabel3.Size = new System.Drawing.Size(25, 20);
             this.toolStripStatusLabel3.Text = "->";
             // 
-            // testingToolStripMenuItem
+            // toolStripStatusLabel2
             // 
-            this.testingToolStripMenuItem.Name = "testingToolStripMenuItem";
-            this.testingToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
-            this.testingToolStripMenuItem.Text = "testing";
-            this.testingToolStripMenuItem.Click += new System.EventHandler(this.testingToolStripMenuItem_Click);
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 20);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -119,7 +143,7 @@ namespace RGR
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "RGR (Yaroslav Tereshchenko IP-04)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.menuStrip1.ResumeLayout(false);
@@ -141,6 +165,8 @@ namespace RGR
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripMenuItem testingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
     }
 }
 

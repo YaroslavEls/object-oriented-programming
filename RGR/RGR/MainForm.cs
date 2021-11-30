@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace RGR
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         SqlConnection MyConnection;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
 
@@ -86,6 +86,23 @@ namespace RGR
             }
         }
 
+        private void AddRow()
+        {
+            List<string> columns = new List<string>();
+            foreach (DataGridViewColumn col in dataGridView1.Columns)
+            {
+                columns.Add(col.HeaderText);
+            }
+
+            AddForm AddForm = new AddForm(columns);
+            AddForm.Text = $"Adding row to the {toolStripStatusLabel2.Text}";
+            AddForm.ShowDialog();
+
+            SqlCommand command = new SqlCommand(AddForm.Output, MyConnection);
+            command.ExecuteNonQuery();
+            AddForm.Close();
+        }
+
         private void tablesToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             dataGridView1.Columns.Clear();
@@ -95,6 +112,12 @@ namespace RGR
             LoadRows(e.ClickedItem.Text);
 
             toolStripStatusLabel2.Text = $"table: {e.ClickedItem.Text}";
+            addToolStripMenuItem.Enabled = true;
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddRow();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
