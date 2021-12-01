@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
 using System.Windows.Forms;
 
 namespace RGR
@@ -42,7 +43,7 @@ namespace RGR
             reader.Close();
         }
 
-        private void LoadColumns(string name)
+        private void RenderColumns(string name)
         {
             string query = $"SELECT COLUMN_NAME FROM rgr.INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{name}'";
             SqlCommand command = new SqlCommand(query, MyConnection);
@@ -59,7 +60,7 @@ namespace RGR
             reader.Close();
         }
 
-        private void LoadRows(string name)
+        private void RenderRows(string name)
         {
             string query = $"SELECT * FROM {name}";
             SqlCommand command = new SqlCommand(query, MyConnection);
@@ -103,21 +104,46 @@ namespace RGR
             AddForm.Close();
         }
 
+        private void ExportTable()
+        {
+            saveFileDialog1.Filter = "txt files (*.txt)|*.txt";
+            saveFileDialog1.ShowDialog();
+            string dir = saveFileDialog1.FileName;
+
+            using (TextWriter tw = new StreamWriter(dir))
+            {
+                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+                {
+                    for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                    {
+                        tw.Write(($"{dataGridView1.Rows[i].Cells[j].Value}").Trim(' ') + " | ");
+                    }
+                    tw.WriteLine();
+                }
+            }
+        }
+
         private void tablesToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             dataGridView1.Columns.Clear();
             dataGridView1.Rows.Clear();
 
-            LoadColumns(e.ClickedItem.Text);
-            LoadRows(e.ClickedItem.Text);
+            RenderColumns(e.ClickedItem.Text);
+            RenderRows(e.ClickedItem.Text);
 
             toolStripStatusLabel2.Text = $"table: {e.ClickedItem.Text}";
             addToolStripMenuItem.Enabled = true;
+            exportToolStripMenuItem.Enabled = true;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddRow();
+        }
+
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExportTable();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -127,7 +153,7 @@ namespace RGR
 
         private void testingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

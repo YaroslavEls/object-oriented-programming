@@ -32,7 +32,7 @@ namespace RGR
                     Name = $"label{name}",
                     Text = name,
                     Width = 100,
-                    Location = new Point(0, items.IndexOf(name) * 20)
+                    Location = new Point(0, items.IndexOf(name) * 30)
                 };
                 Controls.Add(label);
 
@@ -40,7 +40,7 @@ namespace RGR
                 {
                     Name = $"textBox{name}",
                     Width = 100,
-                    Location = new Point(120, items.IndexOf(name) * 20)
+                    Location = new Point(120, items.IndexOf(name) * 30)
                 };
                 Controls.Add(textBox);
             });
