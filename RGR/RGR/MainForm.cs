@@ -14,6 +14,8 @@ namespace RGR
         {
             InitializeComponent();
 
+            dataGridView1.PerformLayout();
+
             Connect();
             LoadTables();
         }
@@ -37,7 +39,7 @@ namespace RGR
 
             while (reader.Read())
             {
-                tablesToolStripMenuItem.DropDownItems.Add(reader.GetValue(0).ToString());
+                tablesItem.DropDownItems.Add(reader.GetValue(0).ToString());
             }
 
             reader.Close();
@@ -96,11 +98,23 @@ namespace RGR
             }
 
             AddForm AddForm = new AddForm(columns);
-            AddForm.Text = $"Adding row to the {toolStripStatusLabel2.Text}";
+            AddForm.Text = tableStatus.Text;
             AddForm.ShowDialog();
 
-            SqlCommand command = new SqlCommand(AddForm.Output, MyConnection);
-            command.ExecuteNonQuery();
+            if (AddForm.Output != null)
+            {
+                SqlCommand command = new SqlCommand(AddForm.Output, MyConnection);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
             AddForm.Close();
         }
 
@@ -110,13 +124,15 @@ namespace RGR
             saveFileDialog1.ShowDialog();
             string dir = saveFileDialog1.FileName;
 
+            if (dir.Length == 0) return;
+
             using (TextWriter tw = new StreamWriter(dir))
             {
                 for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
                 {
                     for (int j = 0; j < dataGridView1.Columns.Count; j++)
                     {
-                        tw.Write(($"{dataGridView1.Rows[i].Cells[j].Value}").Trim(' ') + " | ");
+                        tw.Write(($"{dataGridView1.Rows[i].Cells[j].Value}"));
                     }
                     tw.WriteLine();
                 }
@@ -131,9 +147,9 @@ namespace RGR
             RenderColumns(e.ClickedItem.Text);
             RenderRows(e.ClickedItem.Text);
 
-            toolStripStatusLabel2.Text = $"table: {e.ClickedItem.Text}";
-            addToolStripMenuItem.Enabled = true;
-            exportToolStripMenuItem.Enabled = true;
+            tableStatus.Text = $"table: {e.ClickedItem.Text}";
+            addItem.Enabled = true;
+            exportItem.Enabled = true;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -153,7 +169,7 @@ namespace RGR
 
         private void testingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace RGR
@@ -17,32 +16,24 @@ namespace RGR
             Render();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            SetOutput();
-            Hide();
-        }
-
         private void Render()
         {
             items.ForEach(delegate (string name)
             {
+                layout.RowStyles.Add(new RowStyle());
+
                 Label label = new Label
                 {
                     Name = $"label{name}",
                     Text = name,
-                    Width = 100,
-                    Location = new Point(0, items.IndexOf(name) * 30)
                 };
-                Controls.Add(label);
+                layout.Controls.Add(label, 0, items.IndexOf(name));
 
                 TextBox textBox = new TextBox
                 {
                     Name = $"textBox{name}",
-                    Width = 100,
-                    Location = new Point(120, items.IndexOf(name) * 30)
                 };
-                Controls.Add(textBox);
+                layout.Controls.Add(textBox, 1, items.IndexOf(name));
             });
         }
 
@@ -51,11 +42,22 @@ namespace RGR
             List<string> controls = new List<string>();
             items.ForEach(delegate (string name)
             {
-                var control = "'" + Controls.Find($"textBox{name}", false)[0].Text + "'";
+                var control = "'" + layout.Controls.Find($"textBox{name}", false)[0].Text + "'";
                 controls.Add(control);
             });
 
             Output = $"INSERT INTO {Text.Split()[Text.Split().Length - 1]} ({string.Join(", ", items)}) VALUES ({string.Join(", ", controls)})";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SetOutput();
+            Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Hide();
         }
     }
 }
