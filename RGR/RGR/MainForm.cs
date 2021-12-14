@@ -13,26 +13,31 @@ namespace RGR
         public MainForm()
         {
             InitializeComponent();
-
-            dataGridView1.PerformLayout();
-
-            Connect();
-            LoadTables();
         }
 
-        private void Connect()
+        private void Connect(string name)
         {
             string connectString =
                 "Data Source=.\\SQLEXPRESS;" +
-                "Initial Catalog=rgr;" +
+                $"Initial Catalog={name};" +
                 "Integrated Security=true;";
 
             MyConnection = new SqlConnection(connectString);
-            MyConnection.Open();
+            try
+            {
+                MyConnection.Open();
+                LoadTables();
+            }
+            catch(SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void LoadTables()
         {
+            tablesItem.DropDownItems.Clear();
+            tablesItem.Enabled = true;
             string query = "SELECT TABLE_NAME FROM rgr.INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'";
             SqlCommand command = new SqlCommand(query, MyConnection);
             SqlDataReader reader = command.ExecuteReader();
@@ -85,7 +90,8 @@ namespace RGR
 
             foreach (string[] str in data)
             {
-                dataGridView1.Rows.Add(str);
+                int newRow = dataGridView1.Rows.Add(str);
+                dataGridView1.Rows[newRow].HeaderCell.Value = $"{++newRow}";
             }
         }
 
@@ -116,6 +122,32 @@ namespace RGR
             }
 
             AddForm.Close();
+            RefreshTable();
+        }
+
+        private void DeleteRow()
+        {
+            System.Text.StringBuilder values = new System.Text.StringBuilder();
+
+            for (int i = 0; i < dataGridView1.ColumnCount; i++)
+            {
+                if (i != 0) values.Append(" AND ");
+                values.Append(dataGridView1.Columns[i].Name);
+                values.Append(" = ");
+                values.Append($"'{dataGridView1[i, dataGridView1.CurrentRow.Index].Value.ToString().Trim()}'");
+            }
+
+            string request = $"DELETE FROM {tableStatus.Text.Remove(0, 7)} WHERE {values};";
+
+            var confirm = MessageBox.Show("Are you want to delete selected row?", "Are you sure?", MessageBoxButtons.YesNoCancel);
+
+            if (confirm == DialogResult.Yes)
+            {
+                SqlCommand command = new SqlCommand(request, MyConnection);
+                command.ExecuteNonQuery();
+            }
+
+            RefreshTable();
         }
 
         private void ExportTable()
@@ -128,15 +160,43 @@ namespace RGR
 
             using (TextWriter tw = new StreamWriter(dir))
             {
-                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
                     for (int j = 0; j < dataGridView1.Columns.Count; j++)
                     {
-                        tw.Write(($"{dataGridView1.Rows[i].Cells[j].Value}"));
+                        tw.Write(($"{dataGridView1[j, i].Value.ToString().Trim()} "));
                     }
                     tw.WriteLine();
                 }
             }
+        }
+
+        private void RefreshTable()
+        {
+            dataGridView1.Columns.Clear();
+            dataGridView1.Rows.Clear();
+
+            string name = tableStatus.Text.Remove(0, 7);
+            RenderColumns(name);
+            RenderRows(name);
+        }
+
+        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Columns.Clear();
+            dataGridView1.Rows.Clear();
+            tablesItem.Enabled = false;
+            addItem.Enabled = false;
+            deleteItem.Enabled = false;
+            exportItem.Enabled = false;
+
+            ConnectForm ConnectForm = new ConnectForm();
+            ConnectForm.ShowDialog();
+
+            string name = ConnectForm.Output;
+            ConnectForm.Close();
+
+            Connect(name);
         }
 
         private void tablesToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -149,12 +209,18 @@ namespace RGR
 
             tableStatus.Text = $"table: {e.ClickedItem.Text}";
             addItem.Enabled = true;
+            deleteItem.Enabled = true;
             exportItem.Enabled = true;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddRow();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteRow();
         }
 
         private void exportToolStripMenuItem_Click(object sender, EventArgs e)
@@ -164,7 +230,10 @@ namespace RGR
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MyConnection.Close();
+            if (MyConnection != null)
+            {
+                MyConnection.Close();
+            }
         }
 
         private void testingToolStripMenuItem_Click(object sender, EventArgs e)
