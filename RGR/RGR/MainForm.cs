@@ -164,7 +164,7 @@ namespace RGR
                 {
                     for (int j = 0; j < dataGridView1.Columns.Count; j++)
                     {
-                        tw.Write(($"{dataGridView1[j, i].Value.ToString().Trim()} "));
+                        tw.Write(($"{dataGridView1[j, i].Value.ToString().Trim()}\t"));
                     }
                     tw.WriteLine();
                 }
@@ -238,7 +238,7 @@ namespace RGR
 
         private void testingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

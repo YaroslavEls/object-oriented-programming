@@ -30,8 +30,10 @@ namespace RGR
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tablesItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testingItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -40,8 +42,6 @@ namespace RGR
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -63,6 +63,13 @@ namespace RGR
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // connectToolStripMenuItem
+            // 
+            this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
+            this.connectToolStripMenuItem.Text = "Connect";
+            this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
+            // 
             // tablesItem
             // 
             this.tablesItem.Enabled = false;
@@ -78,6 +85,14 @@ namespace RGR
             this.addItem.Size = new System.Drawing.Size(51, 24);
             this.addItem.Text = "Add";
             this.addItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // deleteItem
+            // 
+            this.deleteItem.Enabled = false;
+            this.deleteItem.Name = "deleteItem";
+            this.deleteItem.Size = new System.Drawing.Size(67, 24);
+            this.deleteItem.Text = "Delete";
+            this.deleteItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // exportItem
             // 
@@ -143,21 +158,6 @@ namespace RGR
             // 
             this.tableStatus.Name = "tableStatus";
             this.tableStatus.Size = new System.Drawing.Size(0, 20);
-            // 
-            // connectToolStripMenuItem
-            // 
-            this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-            this.connectToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
-            this.connectToolStripMenuItem.Text = "Connect";
-            this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
-            // 
-            // deleteItem
-            // 
-            this.deleteItem.Enabled = false;
-            this.deleteItem.Name = "deleteItem";
-            this.deleteItem.Size = new System.Drawing.Size(67, 24);
-            this.deleteItem.Text = "Delete";
-            this.deleteItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // MainForm
             // 
