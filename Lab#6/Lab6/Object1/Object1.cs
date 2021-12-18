@@ -22,7 +22,8 @@ namespace Object1
             [MarshalAs(UnmanagedType.LPStr)] public string lpData;
         }
 
-        public Process process;
+        public Process process1;
+        public Process process2;
 
         public Object1()
         {
@@ -35,15 +36,27 @@ namespace Object1
             int min = (int)numericUpDown2.Value;
             int max = (int)numericUpDown3.Value;
 
-            if (min > max)
+            if (n == 0 || min == 0 || max == 0)
+            {
+                label4.Text = "must be: values > 0";
+                return;
+            }
+            else if (min > max)
             {
                 label4.Text = "must be: min < max";
                 return;
             }
 
-            process = new Process();
-            process.StartInfo.FileName = @"C:\yaroslavels\projects\oop_labs\Lab#6\Lab6\Object2\bin\Debug\netcoreapp3.1\Object2.exe";
-            process.Start();
+            if (process1 != null) process1.Kill();
+            if (process2 != null) process2.Kill();
+
+            process1 = new Process();
+            process1.StartInfo.FileName = @"C:\yaroslavels\projects\oop_labs\Lab#6\Lab6\Object2\bin\Debug\netcoreapp3.1\Object2.exe";
+            process1.Start();
+
+            process2 = new Process();
+            process2.StartInfo.FileName = @"C:\yaroslavels\projects\oop_labs\Lab#6\Lab6\Object3\bin\Debug\netcoreapp3.1\Object3.exe";
+            process2.Start();
 
             Task.Delay(500).Wait();
 
@@ -64,9 +77,14 @@ namespace Object1
 
         private void Form1_FormClosing_1(object sender, FormClosingEventArgs e)
         {
-            if (process != null)
+            if (process1 != null)
             {
-                process.Kill();
+                process1.Kill();
+            }
+
+            if (process2 != null)
+            {
+                process2.Kill();
             }
         }
     }

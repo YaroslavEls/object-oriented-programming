@@ -31,7 +31,9 @@ namespace Object2
 
                     var rand = new Random();
 
-                    double[] result = new double[n]; 
+                    double[] result = new double[n];
+
+                    string data = "";
 
                     for (int i = 0; i < n; i++)
                     {
@@ -42,7 +44,10 @@ namespace Object2
                     foreach (double num in result)
                     {
                         dataGridView1.Rows.Add(Array.IndexOf(result, num), num);
+                        data += num.ToString() + " ";
                     }
+
+                    Clipboard.SetText(data);
 
                     break;
             }
