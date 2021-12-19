@@ -47,22 +47,20 @@ namespace Object1
                 return;
             }
 
-            if (process1 != null) process1.Kill();
-            if (process2 != null) process2.Kill();
+            IntPtr Object2Window = FindWindow(null, "Object2");
+            IntPtr Object3Window = FindWindow(null, "Object3");
 
-            process1 = new Process();
-            process1.StartInfo.FileName = @"C:\yaroslavels\projects\oop_labs\Lab#6\Lab6\Object2\bin\Debug\netcoreapp3.1\Object2.exe";
-            process1.Start();
-
-            process2 = new Process();
-            process2.StartInfo.FileName = @"C:\yaroslavels\projects\oop_labs\Lab#6\Lab6\Object3\bin\Debug\netcoreapp3.1\Object3.exe";
-            process2.Start();
-
-            Task.Delay(500).Wait();
+            if (Object2Window == IntPtr.Zero) 
+            {
+                process1 = new Process();
+                process1.StartInfo.FileName = @"C:\yaroslavels\projects\oop_labs\Lab#6\Lab6\Object2\bin\Debug\netcoreapp3.1\Object2.exe";
+                process1.Start();
+                Task.Delay(500).Wait();
+                Object2Window = FindWindow(null, "Object2");
+            }
 
             string values = $"{n} {min} {max}";
 
-            IntPtr Object2Window = FindWindow(null, "Object2");
             int WM_COPYDATA = 0x004A;
 
             COPYDATASTRUCT cds = new COPYDATASTRUCT
@@ -73,6 +71,14 @@ namespace Object1
             };
 
             SendMessage(Object2Window, WM_COPYDATA, IntPtr.Zero, ref cds);
+
+            if (Object3Window == IntPtr.Zero)
+            {
+                process2 = new Process();
+                process2.StartInfo.FileName = @"C:\yaroslavels\projects\oop_labs\Lab#6\Lab6\Object3\bin\Debug\netcoreapp3.1\Object3.exe";
+                process2.Start();
+                Task.Delay(500).Wait();
+            }
         }
 
         private void Form1_FormClosing_1(object sender, FormClosingEventArgs e)

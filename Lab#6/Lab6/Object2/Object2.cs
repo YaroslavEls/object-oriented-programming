@@ -32,8 +32,9 @@ namespace Object2
                     var rand = new Random();
 
                     double[] result = new double[n];
-
                     string data = "";
+
+                    dataGridView1.Rows.Clear();
 
                     for (int i = 0; i < n; i++)
                     {

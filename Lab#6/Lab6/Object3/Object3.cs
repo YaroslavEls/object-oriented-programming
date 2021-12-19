@@ -35,8 +35,8 @@ namespace Object3
                     y1 = (int)Double.Parse(data[i]);
                     x2 = i + 1;
                     y2 = (int)Double.Parse(data[i + 1]);
-                    e.Graphics.FillEllipse(brush, 10 + (x2 * 20 - 3), ClientSize.Height - (y2 * 10 + 3), 6, 6);
-                    e.Graphics.DrawLine(pen, 10 + (x1 * 20), ClientSize.Height - (y1 * 10), 10 + (x2 * 20), ClientSize.Height - (y2 * 10));
+                    e.Graphics.FillEllipse(brush, 10 + (x2 * 20 - 3), ClientSize.Height - (y2 * 10 + 3) - 10, 6, 6);
+                    e.Graphics.DrawLine(pen, 10 + (x1 * 20), ClientSize.Height - (y1 * 10) - 10, 10 + (x2 * 20), ClientSize.Height - (y2 * 10) - 10);
                 }
             } 
         }
