@@ -35,11 +35,10 @@ namespace RGR
             this.addItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testingItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.databaseStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusArrow = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
@@ -55,8 +54,7 @@ namespace RGR
             this.tablesItem,
             this.addItem,
             this.deleteItem,
-            this.exportItem,
-            this.testingItem});
+            this.exportItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1105, 28);
@@ -102,31 +100,22 @@ namespace RGR
             this.exportItem.Text = "Export";
             this.exportItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
-            // testingItem
-            // 
-            this.testingItem.Name = "testingItem";
-            this.testingItem.Size = new System.Drawing.Size(68, 24);
-            this.testingItem.Text = "testing";
-            this.testingItem.Click += new System.EventHandler(this.testingToolStripMenuItem_Click);
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 28);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowHeadersWidth = 75;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1105, 393);
+            this.dataGridView1.Size = new System.Drawing.Size(1105, 422);
             this.dataGridView1.TabIndex = 2;
             // 
             // statusStrip1
@@ -134,25 +123,25 @@ namespace RGR
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.databaseStatus,
-            this.toolStripStatusLabel3,
+            this.statusArrow,
             this.tableStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 424);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1105, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(1105, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // databaseStatus
             // 
             this.databaseStatus.Name = "databaseStatus";
-            this.databaseStatus.Size = new System.Drawing.Size(96, 20);
-            this.databaseStatus.Text = "database: rgr";
+            this.databaseStatus.Size = new System.Drawing.Size(0, 16);
             // 
-            // toolStripStatusLabel3
+            // statusArrow
             // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(25, 20);
-            this.toolStripStatusLabel3.Text = "->";
+            this.statusArrow.Name = "statusArrow";
+            this.statusArrow.Size = new System.Drawing.Size(25, 20);
+            this.statusArrow.Text = "->";
+            this.statusArrow.Visible = false;
             // 
             // tableStatus
             // 
@@ -187,8 +176,7 @@ namespace RGR
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel databaseStatus;
         private System.Windows.Forms.ToolStripStatusLabel tableStatus;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
-        private System.Windows.Forms.ToolStripMenuItem testingItem;
+        private System.Windows.Forms.ToolStripStatusLabel statusArrow;
         private System.Windows.Forms.ToolStripMenuItem addItem;
         private System.Windows.Forms.ToolStripMenuItem exportItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;

@@ -9,6 +9,7 @@ namespace RGR
     public partial class MainForm : Form
     {
         SqlConnection MyConnection;
+        private string dbName;
 
         public MainForm()
         {
@@ -25,8 +26,11 @@ namespace RGR
             MyConnection = new SqlConnection(connectString);
             try
             {
+                dbName = name;
                 MyConnection.Open();
                 LoadTables();
+                databaseStatus.Text = $"database: {name}";
+                statusArrow.Visible = true;
             }
             catch(SqlException ex)
             {
@@ -38,7 +42,7 @@ namespace RGR
         {
             tablesItem.DropDownItems.Clear();
             tablesItem.Enabled = true;
-            string query = "SELECT TABLE_NAME FROM rgr.INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'";
+            string query = $"SELECT TABLE_NAME FROM {dbName}.INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'";
             SqlCommand command = new SqlCommand(query, MyConnection);
             SqlDataReader reader = command.ExecuteReader();
 
@@ -52,7 +56,7 @@ namespace RGR
 
         private void RenderColumns(string name)
         {
-            string query = $"SELECT COLUMN_NAME FROM rgr.INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{name}'";
+            string query = $"SELECT COLUMN_NAME FROM {dbName}.INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{name}'";
             SqlCommand command = new SqlCommand(query, MyConnection);
             SqlDataReader reader = command.ExecuteReader();
 
@@ -181,7 +185,7 @@ namespace RGR
             RenderRows(name);
         }
 
-        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ClearAll()
         {
             dataGridView1.Columns.Clear();
             dataGridView1.Rows.Clear();
@@ -189,14 +193,24 @@ namespace RGR
             addItem.Enabled = false;
             deleteItem.Enabled = false;
             exportItem.Enabled = false;
+            statusArrow.Visible = false;
+            databaseStatus.Text = "";
+            tableStatus.Text = "";
+        }
+
+        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearAll();
 
             ConnectForm ConnectForm = new ConnectForm();
             ConnectForm.ShowDialog();
 
-            string name = ConnectForm.Output;
-            ConnectForm.Close();
-
-            Connect(name);
+            if (ConnectForm.Output != null)
+            {
+                string name = ConnectForm.Output;
+                ConnectForm.Close();
+                Connect(name);
+            }
         }
 
         private void tablesToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -234,11 +248,6 @@ namespace RGR
             {
                 MyConnection.Close();
             }
-        }
-
-        private void testingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
